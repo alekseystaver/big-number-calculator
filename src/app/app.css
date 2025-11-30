@@ -1,67 +1,144 @@
-.wrapper {
-  font-family: sans-serif;
-  max-width: 500px;
-  margin: 30px auto;
+.main-wrapper {
+  font-family: Arial, sans-serif;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 10px;
 }
 
 .student-info {
-  background: #eee;
-  padding: 10px;
   margin-bottom: 20px;
-  border-radius: 4px;
-}
-
-.calc-box {
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.field {
-  margin-bottom: 15px;
-}
-
-label {
-  display: block;
   font-weight: bold;
+}
+
+.calc-table {
+  border: 2px solid #000;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.top-row {
+  border-bottom: 2px solid #000;
+}
+
+.cell {
+  flex: 1;
+  border-right: 1px solid #000;
+  padding: 10px 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+}
+
+.cell:last-child {
+  border-right: none;
+}
+
+.cell label {
+  font-size: 12px;
   margin-bottom: 5px;
+  text-align: center;
 }
 
-input[type="text"] {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
+.cell input {
+  width: 90%;
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 4px;
+}
+
+.cell.narrow {
+  flex: 0 0 50px;
+  min-width: auto;
+}
+
+.cell.bracket {
+  flex: 0 0 40px;
+  font-size: 24px;
+  font-weight: bold;
+  min-width: auto;
+}
+
+.result-cell {
+  flex: 1.5;
+  background-color: #f9f9f9;
+}
+
+.res-value {
+  font-weight: bold;
   font-size: 16px;
+  word-break: break-all;
 }
 
-.radio-group label {
-  display: inline-block;
-  margin-right: 15px;
-  font-weight: normal;
+select {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.bottom-row {
+  display: flex;
+}
+
+.half-cell {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-half {
+  border-right: 2px solid #000;
+}
+
+.rounding-title {
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.radios {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.radios label {
   cursor: pointer;
 }
 
-button {
-  width: 100%;
-  padding: 10px;
-  background: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
+.final-value {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+}
+
+.calc-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 40px;
+  font-size: 18px;
+  background-color: #eee;
+  border: 1px solid #999;
   cursor: pointer;
 }
 
-button:hover {
-  background: #0056b3;
-}
-
-.result-area {
-  margin-top: 20px;
-  min-height: 40px;
+.calc-btn:hover {
+  background-color: #ddd;
 }
 
 .error-msg {
   color: red;
+  text-align: center;
   font-weight: bold;
+  margin-top: 10px;
 }
