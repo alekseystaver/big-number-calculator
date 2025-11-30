@@ -22,26 +22,40 @@ export class AppComponent {
     this.errorMessage = null;
     this.result = null;
 
-    const v1 = this.numStr1.replace(/,/g, '.');
-    const v2 = this.numStr2.replace(/,/g, '.');
+    const regex = /^-?(\d{1,3}( \d{3})*|\d+)([.,]\d+)?$/;
 
-    const n1 = parseFloat(v1);
-    const n2 = parseFloat(v2);
-
-    if (isNaN(n1) || v1.trim() === '') {
-      this.errorMessage = 'Ошибка в первом числе';
+    if (!regex.test(this.numStr1.trim())) {
+      this.errorMessage = 'Ошибка: Некорректный формат первого числа';
       return;
     }
-    if (isNaN(n2) || v2.trim() === '') {
-      this.errorMessage = 'Ошибка во втором числе';
+
+    if (!regex.test(this.numStr2.trim())) {
+      this.errorMessage = 'Ошибка: Некорректный формат второго числа';
       return;
     }
+
+    const n1 = parseFloat(this.numStr1.replace(/ /g, '').replace(',', '.'));
+    const n2 = parseFloat(this.numStr2.replace(/ /g, '').replace(',', '.'));
 
     let res = 0;
-    if (this.operation === 'add') {
-      res = n1 + n2;
-    } else {
-      res = n1 - n2;
+
+    switch (this.operation) {
+      case 'add':
+        res = n1 + n2;
+        break;
+      case 'sub':
+        res = n1 - n2;
+        break;
+      case 'mul':
+        res = n1 * n2;
+        break;
+      case 'div':
+        if (Math.abs(n2) < 1e-9) {
+          this.errorMessage = 'Ошибка: Деление на ноль';
+          return;
+        }
+        res = n1 / n2;
+        break;
     }
 
     if (Math.abs(res) > this.MAX_LIMIT) {
@@ -49,10 +63,10 @@ export class AppComponent {
       return;
     }
 
-    this.result = res.toLocaleString('en-US', {
-      useGrouping: false,
-      maximumFractionDigits: 6,
-      minimumFractionDigits: 0
-    });
+    const rounded = parseFloat(res.toFixed(6));
+    const parts = rounded.toString().split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    
+    this.result = parts.join('.');
   }
 }

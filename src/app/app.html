@@ -7,24 +7,30 @@
   <div class="calc-box">
     <div class="field">
       <label>Число 1:</label>
-      <input type="text" [(ngModel)]="numStr1">
+      <input type="text" [(ngModel)]="numStr1" placeholder="Например: 1 000.50">
     </div>
 
     <div class="field">
       <label>Операция:</label>
       <div class="radio-group">
         <label>
-          <input type="radio" name="oper" value="add" [(ngModel)]="operation"> Сложение
+          <input type="radio" name="oper" value="add" [(ngModel)]="operation"> (+)
         </label>
         <label>
-          <input type="radio" name="oper" value="sub" [(ngModel)]="operation"> Вычитание
+          <input type="radio" name="oper" value="sub" [(ngModel)]="operation"> (-)
+        </label>
+        <label>
+          <input type="radio" name="oper" value="mul" [(ngModel)]="operation"> (*)
+        </label>
+        <label>
+          <input type="radio" name="oper" value="div" [(ngModel)]="operation"> (/)
         </label>
       </div>
     </div>
 
     <div class="field">
       <label>Число 2:</label>
-      <input type="text" [(ngModel)]="numStr2">
+      <input type="text" [(ngModel)]="numStr2" placeholder="Например: 25">
     </div>
 
     <button (click)="calculate()">Вычислить</button>
